@@ -4,20 +4,37 @@ import java.util.List;
 
 class StudentGroup implements Iterable<Student> {
     private List<Student> students;
+    private String groupName;
+    private String groupSpecialization;
+    public Object getGroupName;
 
-    public StudentGroup() {
+    public StudentGroup(String groupName, String groupSpecialization) {
         this.students = new ArrayList<>();
+        this.groupName = groupName;
+        this.groupSpecialization = groupSpecialization;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public String getGroupSpecialization() {
+        return groupSpecialization;
+    }
+
+    public int getGroupSize() {
+        return students.size();
     }
 
     public void addStudent(Student student) {
         students.add(student);
     }
 
-    public Student getStudent(String name){
+    public Student getStudent(String name) {
         for (Student student : students) {
-            if(student.getName().equals(name)){
+            if (student.getName().equals(name)) {
                 return student;
-            }            
+            }
         }
         return null;
     }
@@ -29,6 +46,12 @@ class StudentGroup implements Iterable<Student> {
     @Override
     public Iterator<Student> iterator() {
         return new StudentGroupIterator();
+    }
+
+    @Override
+    public String toString() {
+
+        return getGroupName();
     }
 
     private class StudentGroupIterator implements Iterator<Student> {
